@@ -1,0 +1,23 @@
+Package: MNB
+Type: Package
+Title: Diagnostic Tools for a Multivariate Negative Binomial Model for Fitting Correlated Data with Overdispersion
+Version: 1.0.0
+Date: 2021-02-11
+Author: Jalmar Carrasco, Cristian Lobos, Lizandra Fabio
+Maintainer: Jalmar Carrasco <carrascojalmar@gmail.com>
+Description: Diagnostic tools as residual analysis, global, 
+    local and total-local influence for the multivariate model 
+    from the random intercept Poisson generalized log gamma model 
+    are available in this packages. Including also, the estimation 
+    process by maximum likelihood method.
+License: GPL (>=2)
+LazyData: TRUE
+Imports:
+    flexsurv,
+    numDeriv,
+    graphics,
+Suggests:
+    stats,
+NeedsCompilation: no
+RoxygenNote: 7.1.1
+Encoding: UTF-8
