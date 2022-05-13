@@ -30,13 +30,18 @@ patient of the placebo and treatment groups.
 }
 \examples{
 
-
 data(seizures)
 head(seizures)
 
 }
 \references{
-Diggle, P. J., Liang, K. Y., and Zeger, S. L. (2013). Analysis of Longitudinal Data. Oxford
+\itemize{
+\item Diggle, P. J., Liang, K. Y., and Zeger, S. L. (2013). Analysis of Longitudinal Data. Oxford
 University Press, N.Y., 2 edition.
+\item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+overdispersion. Communications in Statistics - Theory and Methods.
+https://doi.org/10.1080/03610926.2021.1939380.
+}
 }
 \keyword{dataSets}

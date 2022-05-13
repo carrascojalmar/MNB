@@ -32,7 +32,7 @@ head(seizures)
 
 star <-list(phi=1, beta0=1, beta1=1, beta2=1, beta3=1)
 mod <- fit.MNB(formula=Y ~ trt + period +
-trt*period + offset(log(weeks)),star=star,dataSet=seizures,tab=FALSE)
+trt:period + offset(log(weeks)),star=star,dataSet=seizures,tab=FALSE)
 par <- mod$par
 names(par)<-c()
 
@@ -44,13 +44,27 @@ xlab="Index",pch=15,cex.lab = 1.5, cex = 0.6, bg = 5)
 abline(h=c(-2,0,2),lty=3)
 #identify(res.q)
 
+
+data(alzheimer)
+head(alzheimer)
+
+star <- list(phi=10,beta1=2, beta2=0.2)
+mod <- fit.MNB(formula = Y ~ trat, star = star, dataSet = alzheimer,tab=FALSE)
+
+par<- mod$par
+names(par) <- c()
+re.q <- qMNB(par=par,formula = Y ~ trat, dataSet = alzheimer)
+head(re.q)
+
 }
 \references{
 \itemize{
 \item Dunn, P. K. and Smyth, G. K. (1996). Randomized quantile residuals. Journal of Computational and Graphical
 Statistics, 5, 236-244.
-\item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-negative binomial model for fitting correlated data with overdispersion. Submitted.
+\item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+overdispersion. Communications in Statistics - Theory and Methods.
+https://doi.org/10.1080/03610926.2021.1939380.
 }
 }
 \author{

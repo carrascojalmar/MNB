@@ -1,4 +1,4 @@
-#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with overdispersion
+#' Diagnostic tools for a multivariate negative binomial model
 #'
 #' Diagnostic tools as residual analysis, global, local and total-local influence
 #'      for the multivariate model from the random intercept Poisson-GlG mode. Including
@@ -52,12 +52,55 @@ NULL
 #' \item week: number od weeks
 #' \item ind: Indicator on the ith patient.
 #' }
-#' @references Diggle, P. J., Liang, K. Y., and Zeger, S. L. (2013). Analysis of Longitudinal Data. Oxford
+#' @references
+#' \itemize{
+#' \item Diggle, P. J., Liang, K. Y., and Zeger, S. L. (2013). Analysis of Longitudinal Data. Oxford
 #' University Press, N.Y., 2 edition.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
+#' }
 #' @examples
-#'
 #'
 #' data(seizures)
 #' head(seizures)
+#'
+NULL
+#' Alzheimer data
+#'
+#' @description The Alzheimer’s data is presented in Hand and Taylor (1987) and Hand and
+#' Crowder (1996) to assess deterioration aspects of intellect, self-care and
+#' personality in senile patients with Alzheimer’s disease. Two groups of patients
+#' were compared, one of which received a placebo and the other treatment with
+#' lecithin. In the data, each of the subjects, 26 in the placebo group and 22
+#' in the lecithin group, were measured on five occasions (initially, 1st, 2nd, 4th and 6th).
+#' The measurements were the number of words that the patients could recalled from lists of words.
+#'
+#' @docType data
+#' @keywords dataSets
+#' @name alzheimer
+#' @usage data(alzheimer)
+#' @format This data frame contains the following columns:
+#' \itemize{
+#' \item Y: The number of words that the patients could recalled from lists of words.
+#' \item trt: Placebo ano lecithin groups.
+#' \item ind: Indicator on the ith patient.
+#' \item time:  initially, 1st, 2nd, 4th and 6th visit.
+#' }
+#' @references
+#' \itemize{
+#' \item Hand, D. J. and Crowder, M. (1996). Practical Longitudinal Data Analysis. London: Chapman and Hall.
+#' \item Hand, D. J. and Taylor, C. C. (1987). Analysis of Variance and Repeated Measures. London: Chapman and Hall.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
+#' \item Residual analysis for discrete correlated data in the multivariate approach. Submitted.
+#' }
+#' @examples
+#'
+#' data(alzheimer)
+#' head(alzheimer)
 #'
 NULL

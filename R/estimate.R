@@ -14,7 +14,7 @@ l.MNB <- function(star, formula, dataSet) {
   phi <- star[1]
   beta <- star[2:(p + 1)]
 
-  if(class(off)=="NULL"){
+  if(methods::is(off,"NULL")){
     eta <- X %*% beta
     mu.i <- apply(matrix(exp(eta), mi, n), 2, sum)
     logver <- sum(lgamma(phi + YI)) - n * lgamma(phi) -
@@ -55,13 +55,15 @@ l.MNB <- function(star, formula, dataSet) {
 #' \item Fabio, L., Paula, G. A., and de Castro, M. (2012). A Poisson mixed model
 #' with nonormal random effect distribution. Computational Statistics and
 #' Data Analysis, 56, 1499-1510.
-#' \item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-#' negative binomial model for fitting correlated data with overdispersion. Submitted.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
 #' }
 #'
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #'
 #' data(seizures)
 #' head(seizures)
@@ -86,12 +88,11 @@ l.MNB <- function(star, formula, dataSet) {
 #' @import stats
 
 fit.MNB <- function(star, formula, dataSet, tab=TRUE) {
-  options(warn=-1)
-  op <- stats::optim(fn = l.MNB, gr = NULL, par = star,
+  op <- suppressWarnings(stats::optim(fn = l.MNB, gr = NULL, par = star,
                      method = "BFGS", hessian = TRUE,
                      formula = formula, dataSet = dataSet,
                      control = list(maxit = 500, trace = FALSE,
-                                    fnscale = -1))
+                                    fnscale = -1)))
   if(tab==FALSE){
     return(op)}
   else{

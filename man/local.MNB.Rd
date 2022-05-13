@@ -38,7 +38,7 @@ local influence and the index plot.
 }
 \examples{
 
-\dontrun{
+\donttest{
 
 data(seizures)
 head(seizures)
@@ -61,8 +61,10 @@ schemes="dispersion",plot=FALSE)
 \item Cook, R. D. (1986). Assessment of local influence (with discussion). Journal of
 the Royal Statistical Society B, 48, 133-169.
 \item Lesaffre E. and Verbeke G. (1998). Local influence in linear mixed models. Biometrics, 54, 570-582.
-\item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-negative binomial model for fitting correlated data with overdispersion. Submitted.
+\item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+overdispersion. Communications in Statistics - Theory and Methods.
+https://doi.org/10.1080/03610926.2021.1939380.
 }
 }
 \author{

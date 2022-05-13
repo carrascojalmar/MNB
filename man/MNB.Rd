@@ -3,7 +3,7 @@
 \docType{package}
 \name{MNB}
 \alias{MNB}
-\title{Diagnostic tools for a multivariate negative binomial model for fitting correlated data with overdispersion}
+\title{Diagnostic tools for a multivariate negative binomial model}
 \description{
 Diagnostic tools as residual analysis, global, local and total-local influence
      for the multivariate model from the random intercept Poisson-GlG mode. Including

@@ -18,7 +18,7 @@ cases <- function(star, formula, dataSet) {
     beta <- star[2:(p + 1)]
     w <- star[(p + 2):(n + p + 1)]
 
-    if(class(off)=="NULL"){
+    if(methods::is(off,"NULL")){
     eta <- X %*% beta} else{eta <- X %*% beta + off}
     YI <- apply(matrix(Y, mi, n), 2, sum)
     mu.i <- apply(matrix(exp(eta), mi, n), 2, sum)
@@ -51,7 +51,7 @@ cases.obs <- function(star, formula, dataSet) {
     beta <- star[2:(p + 1)]
     w <- star[(p + 2):(N + p + 1)]
 
-    if(class(off)=="NULL"){
+    if(methods::is(off,"NULL")){
       eta <- X %*% beta} else{eta <- X %*% beta + off}
 
     YI <- rep(apply(matrix(Y, mi, n), 2, sum), each = mi)
@@ -92,7 +92,7 @@ cova.pertu<- function (star,formula,dataSet,cova){
   if(p==cova){X.new <- (cbind(X[,1:(cova-1)],X.star))}
   else{X.new <- (cbind(X[,1:(cova-1)],X.star,X[,(cova+1):p]))}
 
-  if(class(off)=="NULL"){
+  if(methods::is(off,"NULL")){
     eta <- X %*% beta} else{eta <- X %*% beta + off}
 
   YI <- apply(matrix(Y,mi,n),2,sum)
@@ -126,7 +126,7 @@ dispersion <- function(star, formula, dataSet) {
     beta <- star[2:(p + 1)]
     w <- star[(p + 2):(n + p + 1)]
 
-    if(class(off)=="NULL"){
+    if(methods::is(off,"NULL")){
       eta <- X %*% beta} else{eta <- X %*% beta + off}
 
     YI <- apply(matrix(Y, mi, n), 2, sum)
@@ -167,12 +167,14 @@ dispersion <- function(star, formula, dataSet) {
 #' \item Cook, R. D. (1986). Assessment of local influence (with discussion). Journal of
 #' the Royal Statistical Society B, 48, 133-169.
 #' \item Lesaffre E. and Verbeke G. (1998). Local influence in linear mixed models. Biometrics, 54, 570-582.
-#' \item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-#' negative binomial model for fitting correlated data with overdispersion. Submitted.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
 #' }
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #'
 #' data(seizures)
 #' head(seizures)
@@ -266,6 +268,8 @@ local.MNB <- function(star, formula, dataSet, schemes,cova,plot=TRUE) {
         result$local <- vect
         result$localTotal <- Ci
         if (plot==TRUE) {
+          oldpar <- par(no.readonly = TRUE)
+          on.exit(par(oldpar))
           graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
           graphics::plot(abs(vect), main = "", ylab = "|dmax|",
             cex.axis = 1.2, cex.lab = 1.2, pch = 15,
@@ -278,6 +282,8 @@ local.MNB <- function(star, formula, dataSet, schemes,cova,plot=TRUE) {
         result$local <- vect
         result$localTotal <- Ci
         if (plot==TRUE) {
+          oldpar <- par(no.readonly = TRUE)
+          on.exit(par(oldpar))
           graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
           graphics::plot(abs(vect), main = "", ylab = "|dmax|",
             cex.axis = 1.2, cex.lab = 1.2, pch = 15,
@@ -290,6 +296,8 @@ local.MNB <- function(star, formula, dataSet, schemes,cova,plot=TRUE) {
         result$local <- vect
         result$localTotal <- Ci
         if (plot==TRUE) {
+          oldpar <- par(no.readonly = TRUE)
+          on.exit(par(oldpar))
           graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
           graphics::plot(abs(vect), main = "", ylab = "|dmax|",
             cex.axis = 1.2, cex.lab = 1.2, pch = 15,
@@ -302,6 +310,8 @@ local.MNB <- function(star, formula, dataSet, schemes,cova,plot=TRUE) {
         result$local <- vect
         result$localTotal <- Ci
         if (plot==TRUE) {
+          oldpar <- par(no.readonly = TRUE)
+          on.exit(par(oldpar))
           graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
           graphics::plot(abs(vect), main = "", ylab = "|dmax|",
             cex.axis = 1.2, cex.lab = 1.2, pch = 15,

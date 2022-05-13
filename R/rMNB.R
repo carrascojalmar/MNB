@@ -19,7 +19,8 @@
 #' p.fix <- c(10,2.0,0.5,1)
 #'
 #' #generating a sample
-#' rMNB(n=n,mi=mi,formula=~x1+x2, p.fix=p.fix)
+#' sample.ex <- rMNB(n=n,mi=mi,formula=~x1+x2, p.fix=p.fix)
+#' head(sample.ex)
 #'
 #' @export
 #' @import flexsurv

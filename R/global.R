@@ -14,12 +14,14 @@
 #' Cristian M Villegas Lobos <master.villegas@gmail.com> and Lizandra C Fabio <lizandrafabio@gmail.com>
 #' @references
 #' \itemize{
-#' \item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-#' negative binomial model for fitting correlated data with overdispersion. Submitted.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
 #' }
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #'
 #' data(seizures)
 #' head(seizures)
@@ -68,6 +70,8 @@ global.MNB <- function(formula,star,dataSet,plot=TRUE) {
     result$likeDisplacement <- like
 
     if (plot==TRUE) {
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
       graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
       graphics::plot(cook, xlab = "Index", ylab = "Generalized Cook Distance",
             pch = 15, main = "", cex.axis = 1.2,

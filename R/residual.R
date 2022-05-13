@@ -24,8 +24,10 @@
 #' \item Fabio, L., Paula, G. A., and de Castro, M. (2012). A Poisson mixed model
 #' with nonormal random effect distribution. Computational Statistics and
 #' Data Analysis, 56, 1499-1510.
-#' \item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-#' negative binomial model for fitting correlated data with overdispersion. Submitted.
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
 #' }
 #' @examples
 #'
@@ -41,6 +43,13 @@
 #' pch = 15,cex = 0.6, bg = 5,ylab="weighted.residual")
 #'
 #' abline(h=c(-3,0,3),lwd = 2, lty = 2)
+#'
+#' data(alzheimer)
+#' head(alzheimer)
+#'
+#' star <- list(phi=10,beta1=2, beta2=0.2)
+#' r <- re.MNB(formula = Y ~ trat,star=star,dataSet=alzheimer)
+#' names(r)
 #'
 #' @export
 
@@ -66,7 +75,7 @@ re.MNB <- function(star, formula, dataSet) {
     beta_hat <- op$par[2:(p + 1)]
 
     eta_hat <- X %*% beta_hat
-    if(class(off)=="NULL"){
+    if(methods::is(off,"NULL")){
       mu_hat <- exp(X %*% beta_hat)}else{mu_hat <- exp(X %*% beta_hat+off)}
 
     YI <- numeric(n)

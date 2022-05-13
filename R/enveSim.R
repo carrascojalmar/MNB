@@ -17,14 +17,15 @@
 #' \itemize{
 #' \item Atkinson A.C. (1985). Plots, Transformations and Regression: An Introduction to Graphical Methods of Diagnostic
 #' Regression Analysis. Oxford University Press, New York.
-#' \item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-#' negative binomial model for fitting correlated data with overdispersion. Submitted.
-#'
+#' \item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+#' Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+#' overdispersion. Communications in Statistics - Theory and Methods.
+#' https://doi.org/10.1080/03610926.2021.1939380.
 #'
 #' }
 #' @examples
 #'
-#' \dontrun{
+#' \donttest{
 #'
 #' data(seizures)
 #' head(seizures)
@@ -32,8 +33,15 @@
 #' star <-list(phi=1, beta0=1, beta1=1, beta2=1, beta3=1)
 #'
 #' envelope.MNB(formula=Y ~ trt + period + trt:period +
-#' offset(weeks),star=star,nsim=21,n.r=2,
+#' offset(weeks),star=star,nsim=21,n.r=6,
 #' dataSet=seizures,plot=FALSE)
+#'
+#' data(alzheimer)
+#' head(alzheimer)
+#'
+#' star <- list(phi=10,beta1=2, beta2=0.2)
+#' envelope.MNB(formula=Y ~ trat, star=star, nsim=21, n.r=6,
+#' dataSet = alzheimer,plot=FALSE)
 #'
 #' }
 #' @export
@@ -72,7 +80,7 @@ envelope.MNB <- function(star, formula, dataSet, n.r, nsim, plot=TRUE) {
             Q = sigma))
         uij <- rep(ui, each = mi)
         eta <- X %*% (op$par[2:(p + 1)])
-        if(class(off)=="NULL"){
+        if(methods::is(off,"NULL")){
         zij <- exp(eta + uij)}else{zij <- exp(eta + uij+off)}
 
         Y <- stats::rpois(N, zij)
@@ -101,26 +109,28 @@ envelope.MNB <- function(star, formula, dataSet, n.r, nsim, plot=TRUE) {
     result$residual <- tp
 
     if (plot==TRUE) {
-    graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
+        oldpar <- par(no.readonly = TRUE)
+        on.exit(par(oldpar))
+        graphics::par(mfrow = c(1, 2), pty = "s", col = "royalblue")
 
     # Plot - envelope
-    stats::qqnorm(sort(tp), xlab = "Normal quantiles", ylab = "residual",
+        stats::qqnorm(sort(tp), xlab = "Normal quantiles", ylab = "residual",
         pch = 15, ylim = faixa, main = "", cex.axis = 1.2,
         cex.lab = 1.2, cex = 0.6, bg = 5)
-    graphics::par(new = T)
-    stats::qqnorm(e1, axes = F, xlab = "", ylab = "", type = "l",
+        graphics::par(new = T)
+        stats::qqnorm(e1, axes = F, xlab = "", ylab = "", type = "l",
         ylim = faixa, lty = 1, main = "")
-    graphics::par(new = T)
-    stats::qqnorm(e2, axes = F, xlab = "", ylab = "", type = "l",
+        graphics::par(new = T)
+        stats::qqnorm(e2, axes = F, xlab = "", ylab = "", type = "l",
         ylim = faixa, lty = 1, main = "")
-    graphics::par(new = T)
-    stats::qqnorm(med, axes = F, xlab = "", ylab = "", type = "l",
+        graphics::par(new = T)
+        stats::qqnorm(med, axes = F, xlab = "", ylab = "", type = "l",
         ylim = faixa, lty = 2, main = "")
 
     # Plot - residual
-    graphics::plot(tp, ylab = "residual", xlab = "Index", ylim = faixa, cex.axis = 1.2, cex.lab = 1.2, pch = 15,
+        graphics::plot(tp, ylab = "residual", xlab = "Index", ylim = faixa, cex.axis = 1.2, cex.lab = 1.2, pch = 15,
         cex = 0.6, bg = 5)
-    graphics::abline(h = c(-3, 0, 3), lwd = 2, lty = 2)}
+        graphics::abline(h = c(-3, 0, 3), lwd = 2, lty = 2)}
 
     return(result)
 }

@@ -32,7 +32,7 @@ plots to facilitate the goodness of fit.
 }
 \examples{
 
-\dontrun{
+\donttest{
 
 data(seizures)
 head(seizures)
@@ -40,8 +40,15 @@ head(seizures)
 star <-list(phi=1, beta0=1, beta1=1, beta2=1, beta3=1)
 
 envelope.MNB(formula=Y ~ trt + period + trt:period +
-offset(weeks),star=star,nsim=21,n.r=2,
+offset(weeks),star=star,nsim=21,n.r=6,
 dataSet=seizures,plot=FALSE)
+
+data(alzheimer)
+head(alzheimer)
+
+star <- list(phi=10,beta1=2, beta2=0.2)
+envelope.MNB(formula=Y ~ trat, star=star, nsim=21, n.r=6,
+dataSet = alzheimer,plot=FALSE)
 
 }
 }
@@ -49,9 +56,10 @@ dataSet=seizures,plot=FALSE)
 \itemize{
 \item Atkinson A.C. (1985). Plots, Transformations and Regression: An Introduction to Graphical Methods of Diagnostic
 Regression Analysis. Oxford University Press, New York.
-\item Fabio, L. C, Villegas, C. L., Carrasco, J. M. F. and de Castro, M. (2020). Diagnostic tools for a multivariate
-negative binomial model for fitting correlated data with overdispersion. Submitted.
-
+\item Fabio, L. C., Villegas, C., Carrasco, J. M. F., and de Castro, M. (2021). D
+Diagnostic tools for a multivariate negative binomial model for fitting correlated data with
+overdispersion. Communications in Statistics - Theory and Methods.
+https://doi.org/10.1080/03610926.2021.1939380.
 
 }
 }
